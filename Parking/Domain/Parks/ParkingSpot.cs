@@ -1,10 +1,11 @@
 ﻿using System;
+using Parking.Domain.Cars;
 
-namespace Parking
+namespace Parking.Domain.Parks
 {
-    public class ParkingSpot
+    public class Spot
     {
-        public ParkingSpot()
+        public Spot()
         {
             Id = Guid.NewGuid().ToString();
         }
