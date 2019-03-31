@@ -86,7 +86,7 @@ namespace ParkingTest.Domain.Parks
             const string carId = "川A 123456";
             var car = new Car(carId);
             _parkingLot.Park(car);
-            Assert.Throws<InvalIDTicketException>(() =>
+            Assert.Throws<InvalidTicketException>(() =>
                 _parkingLot.GetCar(new Ticket(car.Id, Guid.NewGuid().ToString(), _parkingLot.Id)));
         }
 
@@ -98,7 +98,7 @@ namespace ParkingTest.Domain.Parks
             var car = new Car(carId);
             var ticket = _parkingLot.Park(car);
             _parkingLot.GetCar(ticket);
-            Assert.Throws<InvalIDTicketException>(() => _parkingLot.GetCar(ticket));
+            Assert.Throws<InvalidTicketException>(() => _parkingLot.GetCar(ticket));
         }
     }
 }

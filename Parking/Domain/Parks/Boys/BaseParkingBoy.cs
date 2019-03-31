@@ -36,7 +36,7 @@ namespace Parking.Domain.Parks.Boys
             var parkingLot = _parkingLots.FirstOrDefault(pl => pl.Id == ticket.LotId);
             if (parkingLot == null)
             {
-                throw new InvalIDTicketException();
+                throw new InvalidTicketException();
             }
 
             return parkingLot.GetCar(ticket);

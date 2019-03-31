@@ -55,14 +55,14 @@ namespace Parking.Domain.Parks
         {
             if (ticket.LotId != Id)
             {
-                throw new InvalIDTicketException();
+                throw new InvalidTicketException();
             }
 
             var parkingSpotId = _parkingSpots.FirstOrDefault(ps =>
                 ps.Value != null && ps.Value.Id == ticket.CarId && ps.Key == ticket.SpotIdId).Key;
             if (parkingSpotId == null)
             {
-                throw new InvalIDTicketException();
+                throw new InvalidTicketException();
             }
 
             var car = _parkingSpots[parkingSpotId];

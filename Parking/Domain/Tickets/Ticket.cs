@@ -1,6 +1,4 @@
 ﻿using System;
-using Parking.Domain.Cars;
-using Parking.Domain.Parks;
 
 namespace Parking.Domain.Tickets
 {

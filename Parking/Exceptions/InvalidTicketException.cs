@@ -2,7 +2,7 @@
 
 namespace Parking.Exceptions
 {
-    public class InvalIDTicketException : Exception
+    public class InvalidTicketException : Exception
     {
     }
 }
