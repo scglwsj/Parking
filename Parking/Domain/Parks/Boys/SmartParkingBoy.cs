@@ -16,5 +16,10 @@ namespace Parking.Domain.Parks.Boys
             var parkingLot = _parkingLots.OrderByDescending(pl => pl.UsableParkingSpotNumber).First();
             return parkingLot.Park(car);
         }
+
+        public List<Ticket> Park(List<Car>cars)
+        {
+            return cars.Select(Park).ToList();
+        }
     }
 }
