@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking", "Parking\Parking.csproj", "{6DE1492C-9C1C-4190-AABE-34FD8995041F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{007D1F49-1E15-4399-8553-969737DC4602}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DE1492C-9C1C-4190-AABE-34FD8995041F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE1492C-9C1C-4190-AABE-34FD8995041F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE1492C-9C1C-4190-AABE-34FD8995041F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE1492C-9C1C-4190-AABE-34FD8995041F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007D1F49-1E15-4399-8553-969737DC4602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007D1F49-1E15-4399-8553-969737DC4602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007D1F49-1E15-4399-8553-969737DC4602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007D1F49-1E15-4399-8553-969737DC4602}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
