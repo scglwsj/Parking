@@ -9,9 +9,7 @@ namespace Parking.Domain.Parks
 {
     public class Lot
     {
-//        private readonly IList<Spot> _parkingSpots;
-
-        readonly IDictionary<string, Car> _parkingSpots;
+        private readonly IDictionary<string, Car> _parkingSpots;
         public int UsableParkingSpotNumber
         {
             get { return _parkingSpots.Count(ps => ps.Value == null); }

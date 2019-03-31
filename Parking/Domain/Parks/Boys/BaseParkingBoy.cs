@@ -4,15 +4,15 @@ using Parking.Domain.Cars;
 using Parking.Domain.Tickets;
 using Parking.Exceptions;
 
-namespace Parking.Domain.Parks
+namespace Parking.Domain.Parks.Boys
 {
-    public class Boy
+    public abstract class BaseParkingBoy
     {
-        private readonly IList<Lot> _parkingLots;
+        protected readonly IList<Lot> _parkingLots;
 
-        public Boy(IEnumerable<int> sizes)
+        protected BaseParkingBoy(IList<Lot> parkingLots)
         {
-            _parkingLots = sizes.Select(size => new Lot(size)).ToList();
+            _parkingLots = parkingLots;
         }
 
         public Ticket Park(Car car)
