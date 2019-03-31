@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Parking.Domain.Cars;
 using Parking.Domain.Tickets;
+using Parking.ValueObject;
 
 namespace Parking.Domain.Parks.Boys
 {

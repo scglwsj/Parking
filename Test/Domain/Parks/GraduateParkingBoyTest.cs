@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Parking.Domain.Cars;
 using Parking.Domain.Parks;
 using Parking.Domain.Parks.Boys;
 using Parking.Exceptions;
+using Parking.ValueObject;
 using Xunit;
 
 namespace ParkingTest.Domain.Parks

@@ -4,7 +4,6 @@ namespace Parking.Domain.Tickets
 {
     public class Ticket
     {
-
         public string Id { get; }
         public string CarId { get; }
         public string SpotIdId { get; }
