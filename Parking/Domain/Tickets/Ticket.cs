@@ -6,14 +6,14 @@ namespace Parking.Domain.Tickets
     {
         public string Id { get; }
         public string CarId { get; }
-        public string SpotIdId { get; }
+        public string SpotId { get; }
         public string LotId { get; set; }
 
         public Ticket(string carId, string parkingSpotId, string parkingLotId)
         {
             Id = Guid.NewGuid().ToString();
             CarId = carId;
-            SpotIdId = parkingSpotId;
+            SpotId = parkingSpotId;
             LotId = parkingLotId;
         }
     }

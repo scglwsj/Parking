@@ -15,6 +15,11 @@ namespace Parking.Domain.Parks.Boys
             _parkingLots = parkingLots;
         }
 
+        public bool IsEmpty
+        {
+            get { return _parkingLots.Any(pl => pl.UsableParkingSpotNumber > 0); }
+        }
+
         public Ticket Park(Car car)
         {
             var parkingLot = _parkingLots.FirstOrDefault(pl => pl.UsableParkingSpotNumber > 0);

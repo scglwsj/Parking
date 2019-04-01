@@ -59,7 +59,7 @@ namespace Parking.Domain.Parks
             }
 
             var parkingSpotId = _parkingSpots.FirstOrDefault(ps =>
-                ps.Value != null && ps.Value.Id == ticket.CarId && ps.Key == ticket.SpotIdId).Key;
+                ps.Value != null && ps.Value.Id == ticket.CarId && ps.Key == ticket.SpotId).Key;
             if (parkingSpotId == null)
             {
                 throw new InvalidTicketException();
