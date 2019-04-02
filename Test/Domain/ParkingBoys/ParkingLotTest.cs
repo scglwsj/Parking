@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Parking.Domain.Parks;
+using Parking.Domain.ParkingBoys.Entities;
 using Parking.Domain.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObject;
 using Xunit;
 
-namespace ParkingTest.Domain.Parks
+namespace ParkingTest.Domain.ParkingBoys
 {
     public class LotTest
     {

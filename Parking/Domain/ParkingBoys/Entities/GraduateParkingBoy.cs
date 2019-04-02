@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Parking.Domain.Parks.Boys
+namespace Parking.Domain.ParkingBoys.Entities
 {
-    public class GraduateBoy:BaseParkingBoy
+    public class GraduateBoy : BaseParkingBoy
     {
         public GraduateBoy(IList<Lot> parkingLots) : base(parkingLots)
         {

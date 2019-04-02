@@ -5,7 +5,7 @@ using Parking.Domain.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObject;
 
-namespace Parking.Domain.Parks
+namespace Parking.Domain.ParkingBoys.Entities
 {
     public class Lot
     {

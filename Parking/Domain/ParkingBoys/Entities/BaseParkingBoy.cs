@@ -4,25 +4,25 @@ using Parking.Domain.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObject;
 
-namespace Parking.Domain.Parks.Boys
+namespace Parking.Domain.ParkingBoys.Entities
 {
     public abstract class BaseParkingBoy
     {
-        protected readonly IList<Lot> _parkingLots;
+        protected readonly IList<Lot> Lots;
 
         protected BaseParkingBoy(IList<Lot> parkingLots)
         {
-            _parkingLots = parkingLots;
+            Lots = parkingLots;
         }
 
         public bool IsEmpty
         {
-            get { return _parkingLots.Any(pl => pl.UsableParkingSpotNumber > 0); }
+            get { return Lots.Any(pl => pl.UsableParkingSpotNumber > 0); }
         }
 
         public Ticket Park(Car car)
         {
-            var parkingLot = _parkingLots.FirstOrDefault(pl => pl.UsableParkingSpotNumber > 0);
+            var parkingLot = Lots.FirstOrDefault(pl => pl.UsableParkingSpotNumber > 0);
             if (parkingLot == null)
             {
                 throw new NoSpotException();
@@ -38,7 +38,7 @@ namespace Parking.Domain.Parks.Boys
 
         public Car GetCar(Ticket ticket)
         {
-            var parkingLot = _parkingLots.FirstOrDefault(pl => pl.Id == ticket.LotId);
+            var parkingLot = Lots.FirstOrDefault(pl => pl.Id == ticket.LotId);
             if (parkingLot == null)
             {
                 throw new InvalidTicketException();

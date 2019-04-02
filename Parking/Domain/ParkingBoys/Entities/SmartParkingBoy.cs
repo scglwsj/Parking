@@ -3,7 +3,7 @@ using System.Linq;
 using Parking.Domain.Tickets;
 using Parking.ValueObject;
 
-namespace Parking.Domain.Parks.Boys
+namespace Parking.Domain.ParkingBoys.Entities
 {
     public class SmartParkingBoy : BaseParkingBoy
     {
@@ -13,11 +13,11 @@ namespace Parking.Domain.Parks.Boys
 
         public new Ticket Park(Car car)
         {
-            var parkingLot = _parkingLots.OrderByDescending(pl => pl.UsableParkingSpotNumber).First();
+            var parkingLot = Lots.OrderByDescending(pl => pl.UsableParkingSpotNumber).First();
             return parkingLot.Park(car);
         }
 
-        public List<Ticket> Park(List<Car>cars)
+        public List<Ticket> Park(List<Car> cars)
         {
             return cars.Select(Park).ToList();
         }
