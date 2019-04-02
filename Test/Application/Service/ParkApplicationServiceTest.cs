@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Moq;
 using Parking.Application.Service;
 using Parking.Domain.ParkingBoys.Entity;
@@ -57,7 +58,7 @@ namespace ParkingTest.Application.Service
             var cars = new List<Car> {new Car(carId1), new Car(carId2)};
             _parkableMock.Setup(pm => pm.Park(cars)).Returns(new List<ParkInformation>
                 {new ParkInformation(lotId, spotId, carId1), new ParkInformation(lotId, spotId, carId2)});
-             _service = new ParkApplicationService(_parkableMock.Object);
+            _service = new ParkApplicationService(_parkableMock.Object);
 
             var tickets = _service.Park(cars);
 
@@ -72,11 +73,32 @@ namespace ParkingTest.Application.Service
             var car = new Car("川A 123456");
             var ticket = new Ticket(new ParkInformation("lot ID", "spot ID", car.Id));
             _parkableMock.Setup(pm => pm.Take(ticket)).Returns(car);
-             _service = new ParkApplicationService(_parkableMock.Object);
+            _service = new ParkApplicationService(_parkableMock.Object);
 
             var takeCar = _service.Take(ticket);
 
             Assert.Equal(car.Id, takeCar.Id);
+        }
+
+        [Fact]
+        public void Take_should_return_cars_when_give_tickets()
+        {
+            const string carId1 = "川A 123456";
+            const string carId2 = "川A 234567";
+            const string spotId = "spot ID";
+            const string lotId = "lot ID";
+            var tickets = new List<Ticket>
+            {
+                new Ticket(new ParkInformation(lotId, spotId, carId1)),
+                new Ticket(new ParkInformation(lotId, spotId, carId2))
+            };
+            _parkableMock.Setup(pm => pm.Take(tickets)).Returns(new List<Car> {new Car(carId1), new Car(carId2)});
+            _service = new ParkApplicationService(_parkableMock.Object);
+
+            var cars = _service.Take(tickets);
+
+            Assert.Equal(carId1,cars[0].Id);
+            Assert.Equal(carId2,cars[1].Id);
         }
     }
 }

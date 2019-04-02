@@ -31,5 +31,10 @@ namespace Parking.Application.Service
        {
            return _parkable.Take(ticket);
        }
+
+       public IList<Car> Take(IList<Ticket> tickets)
+       {
+           return _parkable.Take(tickets);
+       }
    }
 }
