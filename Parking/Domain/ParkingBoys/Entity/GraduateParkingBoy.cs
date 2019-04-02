@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Parking.Domains.ParkingBoys.Entities
+namespace Parking.Domain.ParkingBoys.Entity
 {
     public class GraduateBoy : BaseParkingBoy
     {

@@ -19,4 +19,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Parking\Parking.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Service\" />
+  </ItemGroup>
 </Project>

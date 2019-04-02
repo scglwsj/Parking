@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Parking.Domains.ParkingBoys.Entities;
-using Parking.Domains.Tickets;
+using Parking.Domain.ParkingBoys.Entity;
+using Parking.Domain.Tickets;
 using Parking.Exceptions;
-using Parking.ValueObjects;
+using Parking.ValueObject;
 using Xunit;
 
-namespace ParkingTest.Domains.ParkingBoys
+namespace ParkingTest.Domain.ParkingBoys
 {
     public class LotTest
     {
@@ -42,7 +42,7 @@ namespace ParkingTest.Domains.ParkingBoys
 
             const string carId = "川A 123456";
             var car = new Car(carId);
-            Assert.Throws<NoSpotException>(() =>
+            Assert.Throws<NoEnoughSpotException>(() =>
                 _parkingLot.Park(car));
         }
 
@@ -51,7 +51,7 @@ namespace ParkingTest.Domains.ParkingBoys
         {
             _parkingLot = new Lot(1);
             var cars = new List<Car> {new Car("川A 123456"), new Car("川A 234567")};
-            Assert.Throws<NoSpotException>(() =>
+            Assert.Throws<NoEnoughSpotException>(() =>
                 _parkingLot.Park(cars));
         }
 
@@ -100,7 +100,7 @@ namespace ParkingTest.Domains.ParkingBoys
             var car = new Car(carId);
             var ticket = new Ticket(_parkingLot.Park(car));
             _parkingLot.Take(ticket);
-            Assert.Throws<InvalidTicketException>(() => _parkingLot.Take((Ticket) ticket));
+            Assert.Throws<InvalidTicketException>(() => _parkingLot.Take(ticket));
         }
     }
 }

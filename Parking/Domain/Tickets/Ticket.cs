@@ -1,7 +1,7 @@
 ﻿using System;
-using Parking.Domains.ParkingBoys.Entities;
+using Parking.Domain.ParkingBoys.Entity;
 
-namespace Parking.Domains.Tickets
+namespace Parking.Domain.Tickets
 {
     public class Ticket
     {

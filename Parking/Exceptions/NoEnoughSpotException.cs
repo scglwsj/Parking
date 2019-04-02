@@ -2,7 +2,7 @@
 
 namespace Parking.Exceptions
 {
-    public class NoSpotException : Exception
+    public class NoEnoughSpotException : Exception
     {
     }
 }

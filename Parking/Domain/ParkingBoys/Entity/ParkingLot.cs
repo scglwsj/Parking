@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Parking.Domains.ParkingBoys.Interfaces;
-using Parking.Domains.Tickets;
+using Parking.Domain.ParkingBoys.Interface;
+using Parking.Domain.Tickets;
 using Parking.Exceptions;
-using Parking.ValueObjects;
+using Parking.ValueObject;
 
-namespace Parking.Domains.ParkingBoys.Entities
+namespace Parking.Domain.ParkingBoys.Entity
 {
     public class Lot : IParkable
     {
@@ -38,7 +38,7 @@ namespace Parking.Domains.ParkingBoys.Entities
         {
             if (ParkableNumber < 1)
             {
-                throw new NoSpotException();
+                throw new NoEnoughSpotException();
             }
 
             var parkingSpotId = _parkingSpots.First(ps => ps.Value == null).Key;

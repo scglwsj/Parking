@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Parking.Domains.ParkingBoys.Entities;
-using Parking.Domains.Tickets;
-using Parking.ValueObjects;
+using Parking.Domain.ParkingBoys.Entity;
+using Parking.Domain.Tickets;
+using Parking.ValueObject;
 
-namespace Parking.Domains.ParkingBoys.Interfaces
+namespace Parking.Domain.ParkingBoys.Interface
 {
     public interface IParkable
     {

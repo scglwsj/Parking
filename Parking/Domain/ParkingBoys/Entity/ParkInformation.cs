@@ -1,4 +1,4 @@
-﻿namespace Parking.Domains.ParkingBoys.Entities
+﻿namespace Parking.Domain.ParkingBoys.Entity
 {
     public class ParkInformation
     {

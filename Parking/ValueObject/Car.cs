@@ -1,4 +1,4 @@
-﻿namespace Parking.ValueObjects
+﻿namespace Parking.ValueObject
 {
     public class Car
     {

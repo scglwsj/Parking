@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Parking.Domains.ParkingBoys.Entities;
-using Parking.Domains.Tickets;
+using Parking.Domain.ParkingBoys.Entity;
+using Parking.Domain.Tickets;
 using Parking.Exceptions;
-using Parking.ValueObjects;
+using Parking.ValueObject;
 using Xunit;
 
-namespace ParkingTest.Domains.ParkingBoys
+namespace ParkingTest.Domain.ParkingBoys
 {
     public class SmartParkingBoyTest
     {
@@ -71,7 +71,7 @@ namespace ParkingTest.Domains.ParkingBoys
             const string carId = "川A 123456";
             var car = new Car(carId);
 
-            Assert.Throws<NoSpotException>(() =>
+            Assert.Throws<NoEnoughSpotException>(() =>
                 boy.Park(car));
         }
 
