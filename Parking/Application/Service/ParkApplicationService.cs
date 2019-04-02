@@ -1,4 +1,5 @@
 ﻿using Parking.Domain.ParkingBoys.Interface;
+using Parking.Domain.Tickets;
 using Parking.ValueObject;
 
 namespace Parking.Application.Service
@@ -12,9 +13,10 @@ namespace Parking.Application.Service
            _parkable = parkable;
        }
 
-       public void Park(Car car)
+       public Ticket Park(Car car)
        {
-           _parkable.Park(car);
+           var parkInformation = _parkable.Park(car);
+           return new Ticket(parkInformation);
        }
    }
 }

@@ -12,6 +12,11 @@ namespace Parking.Domain.Tickets
 
         public Ticket(ParkInformation parkInformation)
         {
+            if (parkInformation == null)
+            {
+                return;
+            }
+
             Id = Guid.NewGuid().ToString();
             CarId = parkInformation.CarId;
             SpotId = parkInformation.SpotId;
