@@ -1,4 +1,6 @@
-﻿using Parking.Domain.ParkingBoys.Interface;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Parking.Domain.ParkingBoys.Interface;
 using Parking.Domain.Tickets;
 using Parking.ValueObject;
 
@@ -17,6 +19,12 @@ namespace Parking.Application.Service
        {
            var parkInformation = _parkable.Park(car);
            return new Ticket(parkInformation);
+       }
+
+       public IList<Ticket> Park(IList<Car> cars)
+       {
+           var informatics = _parkable.Park(cars);
+           return informatics.Select(i => new Ticket(i)).ToList();
        }
    }
 }
