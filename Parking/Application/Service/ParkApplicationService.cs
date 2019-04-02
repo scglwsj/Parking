@@ -26,5 +26,10 @@ namespace Parking.Application.Service
            var informatics = _parkable.Park(cars);
            return informatics.Select(i => new Ticket(i)).ToList();
        }
+
+       public Car Take(Ticket ticket)
+       {
+           return _parkable.Take(ticket);
+       }
    }
 }
