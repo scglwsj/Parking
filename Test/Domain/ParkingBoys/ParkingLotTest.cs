@@ -89,7 +89,7 @@ namespace ParkingTest.Domain.ParkingBoys
             var car = new Car(carId);
             _parkingLot.Park(car);
             Assert.Throws<InvalidTicketException>(() =>
-                _parkingLot.Take(new Ticket(car.Id, Guid.NewGuid().ToString(), _parkingLot.Id)));
+                _parkingLot.Take(new Ticket(new ParkInformation(_parkingLot.Id, Guid.NewGuid().ToString(), car.Id))));
         }
 
         [Fact]

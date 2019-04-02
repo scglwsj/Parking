@@ -10,14 +10,6 @@ namespace Parking.Domain.Tickets
         public string SpotId { get; }
         public string LotId { get; }
 
-        public Ticket(string carId, string parkingSpotId, string parkingLotId)
-        {
-            Id = Guid.NewGuid().ToString();
-            CarId = carId;
-            SpotId = parkingSpotId;
-            LotId = parkingLotId;
-        }
-
         public Ticket(ParkInformation parkInformation)
         {
             Id = Guid.NewGuid().ToString();
