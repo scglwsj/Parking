@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parking.Domain.Tickets
+namespace Parking.Domains.Tickets
 {
     public class Ticket
     {

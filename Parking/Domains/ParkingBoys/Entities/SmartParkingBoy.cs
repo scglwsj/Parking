@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Parking.Domain.Tickets;
-using Parking.ValueObject;
+using Parking.Domains.Tickets;
+using Parking.ValueObjects;
 
-namespace Parking.Domain.ParkingBoys.Entities
+namespace Parking.Domains.ParkingBoys.Entities
 {
     public class SmartParkingBoy : BaseParkingBoy
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Parking.Domain.Tickets;
+using Parking.Domains.Tickets;
 using Parking.Exceptions;
-using Parking.ValueObject;
+using Parking.ValueObjects;
 
-namespace Parking.Domain.ParkingBoys.Entities
+namespace Parking.Domains.ParkingBoys.Entities
 {
     public abstract class BaseParkingBoy
     {
