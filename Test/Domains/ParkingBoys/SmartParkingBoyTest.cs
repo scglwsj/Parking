@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Parking.Domains.ParkingBoys.Entities;
+using Parking.Domains.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObjects;
 using Xunit;
@@ -79,7 +80,7 @@ namespace ParkingTest.Domains.ParkingBoys
         {
             var boy = new SmartParkingBoy(new List<Lot> {new Lot(1)});
             const string carId = "川A 123456";
-            var ticket = boy.Park(new Car(carId));
+            var ticket = new Ticket(boy.Park(new Car(carId)));
 
             var car = boy.Take(ticket);
 
@@ -89,9 +90,9 @@ namespace ParkingTest.Domains.ParkingBoys
         [Fact]
         public void Should_return_my_car_when_i_use_my_ticket_in_lots_with_other_car()
         {
-            var boy = new SmartParkingBoy(new List<Lot> { new Lot(2) });
+            var boy = new SmartParkingBoy(new List<Lot> {new Lot(2)});
             const string carId = "川A 123456";
-            var ticket = boy.Park(new Car(carId));
+            var ticket = new Ticket(boy.Park(new Car(carId)));
             boy.Park(new Car("123"));
 
             var car = boy.Take(ticket);
