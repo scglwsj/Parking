@@ -81,7 +81,7 @@ namespace ParkingTest.Domains.ParkingBoys
             const string carId = "川A 123456";
             var ticket = boy.Park(new Car(carId));
 
-            var car = boy.GetCar(ticket);
+            var car = boy.Take(ticket);
 
             Assert.Equal(carId, car.Id);
         }
@@ -94,7 +94,7 @@ namespace ParkingTest.Domains.ParkingBoys
             var ticket = boy.Park(new Car(carId));
             boy.Park(new Car("123"));
 
-            var car = boy.GetCar(ticket);
+            var car = boy.Take(ticket);
 
             Assert.Equal(carId, car.Id);
         }

@@ -19,7 +19,6 @@ namespace Parking.Domains.ParkingBoys.Entities
             get { return _parkingSpots.Count(ps => ps.Value == null); }
         }
 
-
         public Lot(int size)
         {
             Id = Guid.NewGuid().ToString();
@@ -29,7 +28,6 @@ namespace Parking.Domains.ParkingBoys.Entities
                 _parkingSpots.Add(Guid.NewGuid().ToString(), null);
             }
         }
-
 
         public IList<ParkInformation> Park(IList<Car> cars)
         {

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Parking.Domains.ParkingBoys.Interfaces;
 using Parking.Domains.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObjects;
 
 namespace Parking.Domains.ParkingBoys.Entities
 {
-    public abstract class BaseParkingBoy
+    public abstract class BaseParkingBoy: IParkable
     {
         protected readonly IList<Lot> Lots;
 
@@ -15,12 +16,12 @@ namespace Parking.Domains.ParkingBoys.Entities
             Lots = parkingLots;
         }
 
-        public bool IsEmpty
+        public int ParkableNumber
         {
-            get { return Lots.Any(pl => pl.ParkableNumber > 0); }
+            get { return Lots.Sum(lot => lot.ParkableNumber); }
         }
 
-        public Ticket Park(Car car)
+        public ParkInformation Park(Car car)
         {
             var parkingLot = Lots.FirstOrDefault(pl => pl.ParkableNumber > 0);
             if (parkingLot == null)
@@ -28,15 +29,15 @@ namespace Parking.Domains.ParkingBoys.Entities
                 throw new NoSpotException();
             }
 
-            return new Ticket(parkingLot.Park(car));
+            return parkingLot.Park(car);
         }
 
-        public IList<Ticket> Park(IEnumerable<Car> cars)
+        public IList<ParkInformation> Park(IList<Car> cars)
         {
             return cars.Select(Park).ToList();
         }
 
-        public Car GetCar(Ticket ticket)
+        public Car Take(Ticket ticket)
         {
             var parkingLot = Lots.FirstOrDefault(pl => pl.Id == ticket.LotId);
             if (parkingLot == null)
@@ -47,9 +48,9 @@ namespace Parking.Domains.ParkingBoys.Entities
             return parkingLot.Take(ticket);
         }
 
-        public IList<Car> GetCars(IEnumerable<Ticket> tickets)
+        public IList<Car> Take(IList<Ticket> tickets)
         {
-            return tickets.Select(GetCar).ToList();
+            return tickets.Select(Take).ToList();
         }
     }
 }

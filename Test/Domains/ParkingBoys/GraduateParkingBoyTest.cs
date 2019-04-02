@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Parking.Domains.ParkingBoys.Entities;
+using Parking.Domains.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObjects;
 using Xunit;
@@ -40,7 +42,7 @@ namespace ParkingTest.Domains.ParkingBoys
             const string carId = "川A 123456";
             var car = new Car(carId);
 
-            Assert.Throws<NoSpotException>(() => 
+            Assert.Throws<NoSpotException>(() =>
                 _graduateParkingBoy.Park(car));
         }
 
@@ -62,12 +64,12 @@ namespace ParkingTest.Domains.ParkingBoys
         [Fact]
         public void Should_return_car_when_get_car_when_ticket_is_valID()
         {
-            _graduateParkingBoy = new GraduateBoy(new List<Lot> { new Lot(1) });
+            _graduateParkingBoy = new GraduateBoy(new List<Lot> {new Lot(1)});
             const string carId = "川A 123456";
             var car = new Car(carId);
-            var ticket = _graduateParkingBoy.Park(car);
+            var ticket = new Ticket(_graduateParkingBoy.Park(car));
 
-            var getCar = _graduateParkingBoy.GetCar(ticket);
+            var getCar = _graduateParkingBoy.Take(ticket);
 
             Assert.Equal(carId, getCar.Id);
         }
@@ -76,12 +78,13 @@ namespace ParkingTest.Domains.ParkingBoys
         public void
             Should_return_cars_when_parking_boy_park_many_cars_in_different_parking_lot_and_get_them_by_tickets()
         {
-            _graduateParkingBoy = new GraduateBoy(new List<Lot> { new Lot(1), new Lot(2) });
+            _graduateParkingBoy = new GraduateBoy(new List<Lot> {new Lot(1), new Lot(2)});
             const string carId1 = "123";
             const string carId2 = "234";
-            var tickets = _graduateParkingBoy.Park(new List<Car> {new Car(carId1), new Car(carId2)});
+            var tickets = _graduateParkingBoy.Park(new List<Car> {new Car(carId1), new Car(carId2)})
+                .Select(pi => new Ticket(pi)).ToList();
 
-            var cars = _graduateParkingBoy.GetCars(tickets);
+            var cars = _graduateParkingBoy.Take(tickets);
 
             Assert.Equal(2, cars.Count);
             Assert.Equal(carId1, cars[0].Id);
