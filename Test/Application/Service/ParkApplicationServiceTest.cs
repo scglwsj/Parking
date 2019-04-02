@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Moq;
 using Parking.Application.Service;
 using Parking.Domain.ParkingBoys.Entity;
@@ -18,6 +17,7 @@ namespace ParkingTest.Application.Service
         public ParkApplicationServiceTest()
         {
             _parkableMock = new Mock<IParkable>();
+            _service = new ParkApplicationService(_parkableMock.Object);
         }
 
         [Fact]
@@ -39,9 +39,8 @@ namespace ParkingTest.Application.Service
             const string spotId = "spot ID";
             _parkableMock.Setup(pm => pm.Park(It.Is<Car>(c => c.Id.Equals(carId))))
                 .Returns(new ParkInformation(lotId, spotId, carId));
-            var service = new ParkApplicationService(_parkableMock.Object);
 
-            var ticket = service.Park(new Car(carId));
+            var ticket = _service.Park(new Car(carId));
 
             Assert.Equal(carId, ticket.CarId);
             Assert.Equal(lotId, ticket.LotId);
@@ -58,7 +57,6 @@ namespace ParkingTest.Application.Service
             var cars = new List<Car> {new Car(carId1), new Car(carId2)};
             _parkableMock.Setup(pm => pm.Park(cars)).Returns(new List<ParkInformation>
                 {new ParkInformation(lotId, spotId, carId1), new ParkInformation(lotId, spotId, carId2)});
-            _service = new ParkApplicationService(_parkableMock.Object);
 
             var tickets = _service.Park(cars);
 
@@ -73,7 +71,6 @@ namespace ParkingTest.Application.Service
             var car = new Car("川A 123456");
             var ticket = new Ticket(new ParkInformation("lot ID", "spot ID", car.Id));
             _parkableMock.Setup(pm => pm.Take(ticket)).Returns(car);
-            _service = new ParkApplicationService(_parkableMock.Object);
 
             var takeCar = _service.Take(ticket);
 
@@ -93,12 +90,11 @@ namespace ParkingTest.Application.Service
                 new Ticket(new ParkInformation(lotId, spotId, carId2))
             };
             _parkableMock.Setup(pm => pm.Take(tickets)).Returns(new List<Car> {new Car(carId1), new Car(carId2)});
-            _service = new ParkApplicationService(_parkableMock.Object);
 
             var cars = _service.Take(tickets);
 
-            Assert.Equal(carId1,cars[0].Id);
-            Assert.Equal(carId2,cars[1].Id);
+            Assert.Equal(carId1, cars[0].Id);
+            Assert.Equal(carId2, cars[1].Id);
         }
     }
 }
