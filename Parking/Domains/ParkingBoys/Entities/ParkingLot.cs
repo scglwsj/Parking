@@ -1,57 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Parking.Domains.ParkingBoys.Interfaces;
 using Parking.Domains.Tickets;
 using Parking.Exceptions;
 using Parking.ValueObjects;
 
 namespace Parking.Domains.ParkingBoys.Entities
 {
-    public class Lot
+    public class Lot : IParkable
     {
+        public string Id { get; }
+
         private readonly IDictionary<string, Car> _parkingSpots;
-        public int UsableParkingSpotNumber
+
+        public int ParkableNumber
         {
             get { return _parkingSpots.Count(ps => ps.Value == null); }
         }
 
-        public string Id { get; }
 
         public Lot(int size)
         {
             Id = Guid.NewGuid().ToString();
-
             _parkingSpots = new Dictionary<string, Car>(size);
-
             for (var i = 0; i < size; i++)
             {
                 _parkingSpots.Add(Guid.NewGuid().ToString(), null);
             }
         }
 
-        public Ticket Park(Car car)
+
+        public IList<ParkInformation> Park(IList<Car> cars)
         {
-            if (UsableParkingSpotNumber < 1)
+            return cars.Select(Park).ToList();
+        }
+
+        public ParkInformation Park(Car car)
+        {
+            if (ParkableNumber < 1)
             {
                 throw new NoSpotException();
             }
 
             var parkingSpotId = _parkingSpots.First(ps => ps.Value == null).Key;
             _parkingSpots[parkingSpotId] = car;
-            return new Ticket(car.Id, parkingSpotId, Id);
+            return new ParkInformation(Id, parkingSpotId, car.Id);
         }
 
-        public IList<Ticket> Park(IList<Car> cars)
-        {
-            if (UsableParkingSpotNumber < cars.Count)
-            {
-                throw new NoSpotException();
-            }
-
-            return cars.Select(Park).ToList();
-        }
-
-        public Car GetCar(Ticket ticket)
+        public Car Take(Ticket ticket)
         {
             if (ticket.LotId != Id)
             {
@@ -70,9 +67,9 @@ namespace Parking.Domains.ParkingBoys.Entities
             return car;
         }
 
-        public IList<Car> GetCars(IEnumerable<Ticket> tickets)
+        public IList<Car> Take(IList<Ticket> tickets)
         {
-            return tickets.Select(GetCar).ToList();
+            return tickets.Select(Take).ToList();
         }
     }
 }

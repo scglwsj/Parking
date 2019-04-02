@@ -17,18 +17,18 @@ namespace Parking.Domains.ParkingBoys.Entities
 
         public bool IsEmpty
         {
-            get { return Lots.Any(pl => pl.UsableParkingSpotNumber > 0); }
+            get { return Lots.Any(pl => pl.ParkableNumber > 0); }
         }
 
         public Ticket Park(Car car)
         {
-            var parkingLot = Lots.FirstOrDefault(pl => pl.UsableParkingSpotNumber > 0);
+            var parkingLot = Lots.FirstOrDefault(pl => pl.ParkableNumber > 0);
             if (parkingLot == null)
             {
                 throw new NoSpotException();
             }
 
-            return parkingLot.Park(car);
+            return new Ticket(parkingLot.Park(car));
         }
 
         public IList<Ticket> Park(IEnumerable<Car> cars)
@@ -44,7 +44,7 @@ namespace Parking.Domains.ParkingBoys.Entities
                 throw new InvalidTicketException();
             }
 
-            return parkingLot.GetCar(ticket);
+            return parkingLot.Take(ticket);
         }
 
         public IList<Car> GetCars(IEnumerable<Ticket> tickets)

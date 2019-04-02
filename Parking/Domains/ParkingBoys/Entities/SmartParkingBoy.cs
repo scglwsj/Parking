@@ -13,8 +13,8 @@ namespace Parking.Domains.ParkingBoys.Entities
 
         public new Ticket Park(Car car)
         {
-            var parkingLot = Lots.OrderByDescending(pl => pl.UsableParkingSpotNumber).First();
-            return parkingLot.Park(car);
+            var parkingLot = Lots.OrderByDescending(pl => pl.ParkableNumber).First();
+            return new Ticket(parkingLot.Park(car));
         }
 
         public List<Ticket> Park(List<Car> cars)

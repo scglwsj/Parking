@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Parking.Domains.ParkingBoys.Entities;
 using Parking.Domains.Tickets;
 using Parking.Exceptions;
@@ -60,8 +61,8 @@ namespace ParkingTest.Domains.ParkingBoys
             _parkingLot = new Lot(1);
             const string carId = "川A 123456";
             var car = new Car(carId);
-            var ticket = _parkingLot.Park(car);
-            var getCar = _parkingLot.GetCar(ticket);
+            var parkInformation = _parkingLot.Park(car);
+            var getCar = _parkingLot.Take(new Ticket(parkInformation));
             Assert.Equal(carId, getCar.Id);
         }
 
@@ -71,8 +72,9 @@ namespace ParkingTest.Domains.ParkingBoys
             _parkingLot = new Lot(3);
             const string carId1 = "123";
             const string carId2 = "234";
-            var tickets = _parkingLot.Park(new List<Car> {new Car(carId1), new Car(carId2)});
-            var cars = _parkingLot.GetCars(tickets);
+            var parkInformatics = _parkingLot.Park(new List<Car> {new Car(carId1), new Car(carId2)});
+            var cars = _parkingLot.Take(parkInformatics.Select(parkInformation => new Ticket(parkInformation))
+                .ToList());
 
             Assert.Equal(2, cars.Count);
             Assert.Equal(carId1, cars[0].Id);
@@ -87,7 +89,7 @@ namespace ParkingTest.Domains.ParkingBoys
             var car = new Car(carId);
             _parkingLot.Park(car);
             Assert.Throws<InvalidTicketException>(() =>
-                _parkingLot.GetCar(new Ticket(car.Id, Guid.NewGuid().ToString(), _parkingLot.Id)));
+                _parkingLot.Take(new Ticket(car.Id, Guid.NewGuid().ToString(), _parkingLot.Id)));
         }
 
         [Fact]
@@ -96,9 +98,9 @@ namespace ParkingTest.Domains.ParkingBoys
             _parkingLot = new Lot(1);
             const string carId = "川A 123456";
             var car = new Car(carId);
-            var ticket = _parkingLot.Park(car);
-            _parkingLot.GetCar(ticket);
-            Assert.Throws<InvalidTicketException>(() => _parkingLot.GetCar(ticket));
+            var ticket = new Ticket(_parkingLot.Park(car));
+            _parkingLot.Take(ticket);
+            Assert.Throws<InvalidTicketException>(() => _parkingLot.Take((Ticket) ticket));
         }
     }
 }

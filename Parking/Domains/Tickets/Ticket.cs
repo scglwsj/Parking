@@ -1,5 +1,5 @@
 ﻿using System;
-using Parking.Domains.ParkingBoys.Interfaces;
+using Parking.Domains.ParkingBoys.Entities;
 
 namespace Parking.Domains.Tickets
 {
