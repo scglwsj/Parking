@@ -19,7 +19,7 @@ namespace Parking.Application.Service
         {
             _parkingBoyRepository = parkingBoyRepository;
             _ticketReposotory = ticketReposotory;
-            var boy = _parkingBoyRepository.GetBoy();
+            var boy = _parkingBoyRepository.GetBoy(new BoyId("26C3719E-984E-4E47-B5D4-D7A5633FEE72"));
             _parkable = boy;
         }
 

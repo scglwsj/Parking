@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Parking.Domain.Tickets.Repository
+﻿namespace Parking.Domain.Tickets.Repository
 {
     public interface ITicketReposotory
     {

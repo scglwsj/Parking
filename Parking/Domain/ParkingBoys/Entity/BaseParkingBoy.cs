@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Parking.Domain.ParkingBoys.Interface;
 using Parking.Domain.Tickets;
@@ -7,12 +8,15 @@ using Parking.ValueObject;
 
 namespace Parking.Domain.ParkingBoys.Entity
 {
-    public abstract class BaseParkingBoy: IParkable
+    public abstract class BaseParkingBoy : IParkable, IEntity, IEquatable<BaseParkingBoy>
     {
         protected readonly IList<Lot> Lots;
 
+        protected BoyId Id { get; }
+
         protected BaseParkingBoy(IList<Lot> parkingLots)
         {
+            Id = new BoyId();
             Lots = parkingLots;
         }
 
@@ -51,6 +55,32 @@ namespace Parking.Domain.ParkingBoys.Entity
         public IList<Car> Take(IList<Ticket> tickets)
         {
             return tickets.Select(Take).ToList();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is BaseParkingBoy boy &&
+                   EqualityComparer<BoyId>.Default.Equals(Id, boy.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
+
+        public bool Equals(BaseParkingBoy other)
+        {
+            return Id == other.Id;
+        }
+
+        public static bool operator ==(BaseParkingBoy left, BaseParkingBoy right)
+        {
+            return EqualityComparer<BoyId>.Default.Equals(left.Id, right.Id);
+        }
+
+        public static bool operator !=(BaseParkingBoy left, BaseParkingBoy right)
+        {
+            return !(left == right);
         }
     }
 }
