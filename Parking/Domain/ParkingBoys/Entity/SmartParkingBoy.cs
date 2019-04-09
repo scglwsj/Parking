@@ -11,6 +11,11 @@ namespace Parking.Domain.ParkingBoys.Entity
         {
         }
 
+        public SmartParkingBoy(BoyId id, IList<Lot> parkingLots) : this((parkingLots))
+        {
+            Id = id;
+        }
+
         public new ParkInformation Park(Car car)
         {
             var parkingLot = Lots.OrderByDescending(pl => pl.ParkableNumber).First();

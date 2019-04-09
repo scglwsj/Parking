@@ -22,5 +22,13 @@ namespace Parking.Domain.Tickets
             SpotId = parkInformation.SpotId;
             LotId = parkInformation.LotId;
         }
+
+        public Ticket(string id, string carId, string spotId, string lotId)
+        {
+            Id = id;
+            CarId = carId;
+            SpotId = spotId;
+            LotId = lotId;
+        }
     }
 }

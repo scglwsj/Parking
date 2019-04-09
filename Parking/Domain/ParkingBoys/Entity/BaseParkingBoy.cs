@@ -12,7 +12,7 @@ namespace Parking.Domain.ParkingBoys.Entity
     {
         protected readonly IList<Lot> Lots;
 
-        protected BoyId Id { get; }
+        public BoyId Id { get; protected set; }
 
         protected BaseParkingBoy(IList<Lot> parkingLots)
         {

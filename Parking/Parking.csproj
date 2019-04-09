@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Domain\ParkingBoys\Repository\" />
-    <Folder Include="Domain\Tickets\Repository\" />
   </ItemGroup>
 </Project>

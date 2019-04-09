@@ -1,15 +1,15 @@
 ﻿using System;
-using MemoryCacheRepository;
 using Parking.Application.Service;
 using Parking.ValueObject;
+using SqlServerRepository;
 
 namespace ConsoleApplication
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            var service = new ParkApplicationService(new ParkingBoyRepository(), new TicketRepositpry());
+            var service = new ParkApplicationService(new ParkingBoyRepository(), new TicketRepository());
             var ticketId = service.Park(new Car("12345")).Id;
             var ticket = service.FindTicket(ticketId);
             Console.WriteLine($"{ticket.CarId}");

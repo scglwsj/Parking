@@ -29,6 +29,16 @@ namespace Parking.Domain.ParkingBoys.Entity
             }
         }
 
+        public Lot(string id, ICollection<string> spots)
+        {
+            Id = id;
+            _parkingSpots = new Dictionary<string, Car>(spots.Count);
+            foreach (var spot in spots)
+            {
+                _parkingSpots.Add(spot, null);
+            }
+        }
+
         public IList<ParkInformation> Park(IList<Car> cars)
         {
             return cars.Select(Park).ToList();

@@ -13,12 +13,12 @@ namespace Parking.Application.Service
     {
         private readonly IParkable _parkable;
         private readonly IParkingBoyRepository _parkingBoyRepository;
-        private readonly ITicketReposotory _ticketReposotory;
+        private readonly ITicketRepository _ticketRepository;
 
-        public ParkApplicationService(IParkingBoyRepository parkingBoyRepository, ITicketReposotory ticketReposotory)
+        public ParkApplicationService(IParkingBoyRepository parkingBoyRepository, ITicketRepository ticketRepository)
         {
             _parkingBoyRepository = parkingBoyRepository;
-            _ticketReposotory = ticketReposotory;
+            _ticketRepository = ticketRepository;
             var boy = _parkingBoyRepository.GetBoy(new BoyId("26C3719E-984E-4E47-B5D4-D7A5633FEE72"));
             _parkable = boy;
         }
@@ -27,7 +27,7 @@ namespace Parking.Application.Service
         {
             var parkInformation = _parkable.Park(car);
             var ticket = new Ticket(parkInformation);
-            _ticketReposotory.Save(ticket);
+            _ticketRepository.Save(ticket);
             return ticket;
         }
 
@@ -54,7 +54,7 @@ namespace Parking.Application.Service
 
         public Ticket FindTicket(string ticketId)
         {
-            return _ticketReposotory.Get(ticketId);
+            return _ticketRepository.Get(ticketId);
         }
     }
 }

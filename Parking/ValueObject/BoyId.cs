@@ -15,7 +15,7 @@ namespace Parking.ValueObject
             Id = id;
         }
 
-        string Id { get; }
+        public string Id { get; }
 
         public override bool Equals(object obj)
         {
