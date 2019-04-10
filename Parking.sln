@@ -10,7 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryCacheRepository", "Me
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{5950678A-B0FA-4BE2-8F93-2CDBFAE68070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerRepository", "SqlServerRepository\SqlServerRepository.csproj", "{C02B29E1-2C72-477A-A102-D998E6D39E48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerRepository", "SqlServerRepository\SqlServerRepository.csproj", "{C02B29E1-2C72-477A-A102-D998E6D39E48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{468D05C0-19FB-4F1F-BA91-A63785AEC3B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{C02B29E1-2C72-477A-A102-D998E6D39E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C02B29E1-2C72-477A-A102-D998E6D39E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C02B29E1-2C72-477A-A102-D998E6D39E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{468D05C0-19FB-4F1F-BA91-A63785AEC3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468D05C0-19FB-4F1F-BA91-A63785AEC3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468D05C0-19FB-4F1F-BA91-A63785AEC3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468D05C0-19FB-4F1F-BA91-A63785AEC3B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
