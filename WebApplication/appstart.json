@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "parkingApi",
+      "script": "appstart.bat",
+      "error_file": "c://logs/parking-api-err.log",
+      "out_file": "c://logs/parking-api-out.log",
+      "max_memory_restart": "500M",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "dev"
+      }
+    }
+  ]
+}
