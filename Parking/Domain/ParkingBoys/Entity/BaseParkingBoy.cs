@@ -72,15 +72,5 @@ namespace Parking.Domain.ParkingBoys.Entity
         {
             return Id == other.Id;
         }
-
-        public static bool operator ==(BaseParkingBoy left, BaseParkingBoy right)
-        {
-            return EqualityComparer<BoyId>.Default.Equals(left.Id, right.Id);
-        }
-
-        public static bool operator !=(BaseParkingBoy left, BaseParkingBoy right)
-        {
-            return !(left == right);
-        }
     }
 }

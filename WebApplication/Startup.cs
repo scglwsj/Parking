@@ -15,6 +15,7 @@ using Parking.Domain.ParkingBoys.Repository;
 using Parking.Domain.Tickets.Repository;
 using SqlServerRepository;
 using SqlServerRepository.DataObject;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApplication
 {
@@ -32,10 +33,14 @@ namespace WebApplication
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // 注入
             services.AddScoped<IParkingBoyRepository, ParkingBoyRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<SqlServerDbContext>();
             services.AddScoped<ParkApplicationService>();
+
+            // swagger
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "parking",Version = "v1"}));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,9 @@ namespace WebApplication
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "parking v1"));
         }
     }
 }

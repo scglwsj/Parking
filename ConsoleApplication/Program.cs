@@ -13,6 +13,10 @@ namespace ConsoleApplication
             var ticketId = service.Park(new Car("12345")).Id;
             var ticket = service.FindTicket(ticketId);
             Console.WriteLine($"{ticket.CarId}");
+
+            var ticket2 = service.Park(new Car("12346"));
+            var car = service.Take(ticket2);
+            Console.WriteLine(car);
         }
     }
 }
